@@ -1,6 +1,4 @@
-require 'benchmark'
-require 'openssl'
-
+require 'benchmark/ips'
 require 'active_support'
 
 N = 10_000
@@ -53,7 +51,7 @@ puts "Size of HMAC CBC ciphertext: #{ct_hmac_cbc.size}"
 puts "Size of GCM ciphertext: #{ct_gcm.size}"
 puts "\n"
 
-Benchmark.bmbm do |x|
+Benchmark.ips do |x|
   x.report('HMAC generate') do
     N.times do
       verifier.generate(message)

@@ -19,23 +19,27 @@ Size of HMAC signed message: 202
 Size of HMAC CBC ciphertext: 306
 Size of GCM ciphertext: 204
 
-Rehearsal
----------------------------------------------------------------
-HMAC generate                 0.040000   0.000000   0.040000 (0.040253)
-HMAC verify                   0.110000   0.000000   0.110000 (0.115238)
-HMAC-CBC encrypt_and_sign     0.100000   0.000000   0.100000 (0.100406)
-HMAC-CBC decrypt_and_verify   0.170000   0.000000   0.170000 (0.171886)
-GCM encrypt_and_sign          0.060000   0.000000   0.060000 (0.059925)
-GCM decrypt_and_verify        0.050000   0.000000   0.050000 (0.046967)
------------------------------------------------------- total: 0.530000sec
+Warming up --------------------------------------
+       HMAC generate     2.000  i/100ms
+         HMAC verify     1.000  i/100ms
+HMAC-CBC encrypt_and_sign
+                         1.000  i/100ms
+HMAC-CBC decrypt_and_verify
+                         1.000  i/100ms
+GCM encrypt_and_sign     1.000  i/100ms
+GCM decrypt_and_verify
+                         2.000  i/100ms
+Calculating -------------------------------------
+       HMAC generate     29.890  (± 3.3%) i/s -    150.000  in 5.028232s
+         HMAC verify      9.510  (± 0.0%) i/s -     48.000  in 5.054287s
+HMAC-CBC encrypt_and_sign
+                         10.552  (± 0.0%) i/s -     53.000  in 5.034325s
+HMAC-CBC decrypt_and_verify
+                          6.208  (± 0.0%) i/s -     31.000  in 5.000673s
+GCM encrypt_and_sign     19.984  (± 5.0%) i/s -    100.000  in 5.020456s
+GCM decrypt_and_verify
+                         24.547  (± 4.1%) i/s -    124.000  in 5.066601s
 
-                                  user     system      total        real
-HMAC generate                 0.040000   0.000000   0.040000 (0.037547)
-HMAC verify                   0.120000   0.000000   0.120000 (0.111730)
-HMAC-CBC encrypt_and_sign     0.100000   0.000000   0.100000 (0.096689)
-HMAC-CBC decrypt_and_verify   0.170000   0.000000   0.170000 (0.165184)
-GCM encrypt_and_sign          0.050000   0.000000   0.050000 (0.055885)
-GCM decrypt_and_verify        0.050000   0.000000   0.050000 (0.046961)
 ```
 
 Your mileage may vary!
