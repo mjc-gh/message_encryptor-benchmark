@@ -21,9 +21,14 @@ sign_secret = key_gen.generate_key(sign_salt)
 gcm_salt = 'gcm salt'
 gcm_secret = key_gen.generate_key(gcm_salt)
 
-# initialize a verifier
+# initialize some verifiers
 verifier = ActiveSupport::MessageVerifier.new(
   key_gen.generate_key('salt'),
+  serializer: ActiveSupport::MessageEncryptor::NullSerializer)
+
+verifier = ActiveSupport::MessageVerifier.new(
+  key_gen.generate_key('salt'),
+  digest: 'SHA256',
   serializer: ActiveSupport::MessageEncryptor::NullSerializer)
 
 # predefine a signed message
@@ -52,13 +57,25 @@ puts "Size of GCM ciphertext: #{ct_gcm.size}"
 puts "\n"
 
 Benchmark.ips do |x|
-  x.report('HMAC generate') do
+  x.report('HMAC SHA1 generate') do
     N.times do
       verifier.generate(message)
     end
   end
 
-  x.report('HMAC verify') do
+  x.report('HMAC SHA1 verify') do
+    N.times do
+      verifier.verify(signed_message)
+    end
+  end
+
+  x.report('HMAC SHA256 generate') do
+    N.times do
+      verifier.generate(message)
+    end
+  end
+
+  x.report('HMAC SHA256 verify') do
     N.times do
       verifier.verify(signed_message)
     end

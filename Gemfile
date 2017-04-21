@@ -1,3 +1,5 @@
+source 'https://rubygems.org'
+
 gem 'benchmark-ips'
 
-gem 'rails', github: 'rails/rails'
+gem 'rails', git: 'https://github.com/rails/rails'
